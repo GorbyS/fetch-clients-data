@@ -1,0 +1,23 @@
+{
+  "name": "fetch-clients-data-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "start": "yarn concurrently \"yarn workspace frontend start\" \"yarn workspace backend start\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0",
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.3"
+  }
+}
