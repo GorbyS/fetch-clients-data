@@ -1,5 +1,5 @@
 {
-  "name": "fetch-clients-data-app",
+  "name": "fetch-clients-data",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -16,6 +16,7 @@
     "nodemon": "^3.1.4"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongoose": "^8.4.3"

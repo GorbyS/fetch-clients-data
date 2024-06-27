@@ -2,19 +2,19 @@ const express = require("express");
 const app = express();
 const PORT = process. env.PORT || 5000;
 const DbConnect = require("./backend/database/connect");
-// const getMaterials = require("./routes/GET/getMaterial");
-// const saveMaterial = require("./routes/POST/saveMaterial");
-// const cors = require("cors");
+const getClientData = require("./backend//routes/GET/getClientData");
+const saveClientData = require("./backend/routes/POST/saveClientData");
+const cors = require("cors");
 
 DbConnect.connect();
 
 
-// app.use(express.json({extended: false}));
-// app.use(express.text({extended: false}));
+app.use(express.json({extended: false}));
+app.use(express.text({extended: false}));
 
-// app.use("/", cors(), getMaterials);
+app.use("/", cors(), getClientData);
 
-// app.use("/", saveMaterial);
+app.use("/", cors(),saveClientData);
 
 
 app.get("/", (req, res) => {
@@ -22,5 +22,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, (err) => {
-    console.log(`Server runs on ${PORT}!`)
+    console.log(`Server runs on ${PORT}!`);
 });
