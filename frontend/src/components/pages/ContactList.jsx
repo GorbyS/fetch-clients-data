@@ -7,10 +7,10 @@ export default function ContactList() {
     const [selectedClient, setSelectedClient] = useState(null)
 
     useEffect(() => {
-        addingСlient();
+        addingClient();
     },[])
 
-    const addingСlient = async () => {
+    const addingClient = async () => {
         setServerMessage("Loading data")
         const data = await fetch("http://localhost:5000/get-client")
         const finalData = await data.json()
@@ -18,6 +18,23 @@ export default function ContactList() {
         setClients(documents)
         setServerMessage(msg)
     }
+
+    const deleteClient = async (clientId) => {
+        try {
+            const response = await fetch(`http://localhost:5000/delete-client/${clientId}`, {
+                method: 'DELETE',
+            });
+            const data = await response.json()
+            if (data.deleted) {
+                setClients(clients.filter(client => client._id !== clientId))
+                setServerMessage(data.msg)
+            } else {
+                setServerMessage(data.msg)
+            }
+        } catch (error) {
+            setServerMessage("Error deleting client: " + error.message)
+        }
+    };
 
     const showClientDetails = (client) => {
         setSelectedClient(client)
@@ -27,16 +44,19 @@ export default function ContactList() {
     return (
         <div>
             {clients.map((client, index) => (
-                <button key={index} onClick={() => showClientDetails(client)}>
-                    {client.firstName} {client.lastName}
-                </button>
+                <div key={index}>
+                    <button onClick={() => showClientDetails(client)}>
+                        {client.firstName} {client.lastName}
+                    </button>
+                    <button onClick={() => deleteClient(client._id)}>Delete</button>
+                </div>
             ))}
             <div className="msg">{serverMessage}</div>
             {selectedClient && (
                 <div className="client-details">
                     <h3>Client Details:</h3>
-                    <p>Sex: {selectedClient.firstName}</p>
-                    <p>Sex: {selectedClient.lastName}</p>
+                    <p>Name: {selectedClient.firstName}</p>
+                    <p>Last Name: {selectedClient.lastName}</p>
                     <p>Birth Date: {selectedClient.birthDate}</p>
                     <p>Sex: {selectedClient.sex}</p>
                 </div>

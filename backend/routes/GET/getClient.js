@@ -1,7 +1,7 @@
-const getClientData = require("express").Router();
+const getClient = require("express").Router();
 const clientModel= require("../../models/client");
 
-getClientData.get("/get-client", async (req, res) => {
+getClient.get("/get-client", async (req, res) => {
     try {
         const docs = await clientModel.find({});
 
@@ -10,7 +10,7 @@ getClientData.get("/get-client", async (req, res) => {
                 msg: "No clients found",
                 documents: []
             });
-        };
+        }
 
         return res.json({
             msg: "Successfully get a clients data",
@@ -25,5 +25,5 @@ getClientData.get("/get-client", async (req, res) => {
         });
     }
 });
-module.exports = getClientData;
+module.exports = getClient;
 

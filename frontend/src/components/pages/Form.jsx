@@ -1,7 +1,6 @@
 import React from "react";
 import Input from "../Input"
 import Button from "../button/Button";
-import {Link} from 'react-router-dom';
 
 
 export default function Form() {
@@ -22,21 +21,13 @@ export default function Form() {
   }
 
   const formatDate = (dateString) => {
-    const date = new Date(dateString)
-    const day = String(date.getDate()).padStart(2, "0")
-    const month = String(date.getMonth() + 1).padStart(2, "0")
-    const year = date.getFullYear()
-    return `${day}.${month}.${year}`
-  }
-
-  const parseDate = (dateString) => {
     const [day, month, year] = dateString.split('.')
-    return new Date(`${year}-${month}-${day}`)
+    return `${day.padStart(2, "0")}.${month.padStart(2, "0")}.${year}`
   }
 
   const isValidDate = (dateString) => {
     const regex = /^\d{1,2}\.\d{1,2}\.\d{4}$/
-    if (!regex.test(dateString)) return false
+    if (regex.test(dateString)) return false
   
     const [day, month, year] = dateString.split('.').map(Number)
     const date = new Date(year, month - 1, day)
@@ -64,7 +55,7 @@ export default function Form() {
     if (validateForm()) {
       const formattedDate = {
         ...formData,
-        birthDate: formatDate(parseDate(formData.birthDate)),
+        birthDate: formatDate(formData.birthDate),
       }
       console.log('Form Data Submitted:', formattedDate)
 
@@ -72,7 +63,7 @@ export default function Form() {
         ...prevFormData,
         hasError: false,
       }))
-      sendData()
+      sendData(formattedDate)
     } else {
       setForm((prevFormData) => ({
         ...prevFormData,
@@ -81,14 +72,14 @@ export default function Form() {
     }
   }
 
-  const sendData = () => {
+  const sendData = (dataToSend) => {
     fetch("http://localhost:5000/save-client", {
         method: "post",
         headers: {
             "Accept":"applications/json",
             "Content-type":"application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(dataToSend)
     }).then((data) => {
         return data.json()
     }).then((finalData) => {

@@ -1,7 +1,7 @@
-const saveClientData = require("express").Router();
+const saveClient = require("express").Router();
 const clientModel= require("../../models/client");
 
-saveClientData.post("/save-client", async (req, res) => {
+saveClient.post("/save-client", async (req, res) => {
     try {
         const {firstName, lastName, birthDate, sex} = req.body
         const client = new clientModel({
@@ -22,8 +22,8 @@ saveClientData.post("/save-client", async (req, res) => {
     }
 });
 
-saveClientData.get("/save-client", (req, res) => {
+saveClient.get("/save-client", (req, res) => {
     res.send("Yes, you are on /save-client GETEM")
 });
 
-module.exports = saveClientData;
+module.exports = saveClient;
