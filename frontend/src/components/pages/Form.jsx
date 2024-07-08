@@ -101,63 +101,79 @@ export default function Form() {
       <form onSubmit={handleSubmit}>
         <h3>Zadejte své osobní údaje</h3>
         <div className="input-group">
-          <Input
-            label="Jméno"
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            style={{
-              border: formData.hasError && formData.firstName.trim() === "" ? "1px solid red" : null,
-            }}
-            onChange={handleChange}
-            placeholder="Enter your first name"
-          />
-          <Input
-            label="Příjmení"
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            style={{
-              border: formData.hasError && formData.lastName.trim() === "" ? "1px solid red" : null,
-            }}
-            onChange={handleChange}
-            placeholder="Enter your last name"
-          />
-          <Input
-            label="Datum narození"
-            type="text"
-            name="birthDate"
-            value={formData.birthDate}
-            style={{
-              border: formData.hasError && !isValidDate(formData.birthDate) ? "1px solid red" : null,
-            }}
-            onChange={handleChange}
-            placeholder="dd.mm.yyyy"
-          />
-          <div className="radio-group" style={{ 
-            border: formData.hasError && formData.sex === false ? "1px solid red" : null,
-          }}>
-            <label>
-              <Input
-                label="Male"
-                type="radio"
-                name="sex"
-                value="male"
-                checked={formData.sex === 'male'}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              <Input
-                label="Female"
-                type="radio"
-                name="sex"
-                value="female"
-                checked={formData.sex === 'female'}
-                onChange={handleChange}
-              />
-            </label>
+          <div className="input-wrapper">
+            <Input
+              label="Name"
+              type="text"
+              name="firstName"
+              value={formData.firstName}
+              style={{
+                border: formData.hasError && formData.firstName.trim() === "" ? "1px solid red" : null,
+              }}
+              onChange={handleChange}
+              placeholder="Enter your first name"
+            />
           </div>
+          {formData.hasError && formData.firstName.trim() === "" && 
+            <p className="error-message">Enter your name</p>}
+          <div className="input-wrapper">
+            <Input
+              label="Last Name"
+              type="text"
+              name="lastName"
+              value={formData.lastName}
+              style={{
+                border: formData.hasError && formData.lastName.trim() === "" ? "1px solid red" : null,
+              }}
+              onChange={handleChange}
+              placeholder="Enter your last name"
+            />
+          </div>
+          {formData.hasError && formData.lastName.trim() === "" && 
+            <p className="error-message">Enter your last name</p>}
+          <div className="input-wrapper">
+            <Input
+              label="Birthday"
+              type="text"
+              name="birthDate"
+              value={formData.birthDate}
+              style={{
+                border: formData.hasError && !isValidDate(formData.birthDate) ? "1px solid red" : null,
+              }}
+              onChange={handleChange}
+              placeholder="dd.mm.yyyy"
+            />
+          </div>
+          {formData.hasError && !isValidDate(formData.birthDate) && 
+            <p className="error-message">Enter your birth date</p>}
+          <div className="radio-group-wrapper">
+            <div className="radio-group" style={{ 
+              border: formData.hasError && formData.sex === false ? "1px solid red" : null,
+            }}>
+              <label>
+                <Input
+                  label="Male"
+                  type="radio"
+                  name="sex"
+                  value="male"
+                  checked={formData.sex === 'male'}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                <Input
+                  label="Female"
+                  type="radio"
+                  name="sex"
+                  value="female"
+                  checked={formData.sex === 'female'}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+          </div>
+          {formData.hasError && formData.sex === false && 
+            <p className="error-message">Please select a gender</p>}
         </div>
 
         <Button type="submit" isActive={isFormValid}>Potvrdit</Button>
