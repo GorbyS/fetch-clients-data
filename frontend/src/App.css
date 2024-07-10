@@ -103,3 +103,67 @@ form {
   text-align: left;
   width: 100%;
 }
+
+.menu {
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.button {
+  padding: 1rem 4rem;
+  background: #0056b3;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.button:hover {
+  opacity: 0.8;  
+}
+
+.button-client {
+  padding: 1rem 4rem;
+  background: #2c6fb6;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  width: 200px;
+  margin-right: 1rem;
+}
+
+.client-list {
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.button-delete {
+  padding: 0.5rem 1rem;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.msg {
+  padding: 10px;
+  margin-top: 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  color: #495057;
+  font-size: 0.9em;
+  text-align: center;
+}

@@ -4,9 +4,8 @@ import {Link} from 'react-router-dom';
 export default function Menu() {
     return (
         <div className="menu">
-            <Link to="/">Main page</Link>
-            <br />
-            <Link to="/add-contact">Client data</Link>
+            <Link className="button menu" to="/">Main page</Link>
+            <Link className="button menu" to="/add-contact">Client data</Link>
         </div>
     )
 }

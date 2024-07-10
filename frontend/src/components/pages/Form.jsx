@@ -27,7 +27,7 @@ export default function Form() {
 
   const isValidDate = (dateString) => {
     const regex = /^\d{1,2}\.\d{1,2}\.\d{4}$/
-    if (regex.test(dateString)) return false
+    if (!regex.test(dateString)) return false
   
     const [day, month, year] = dateString.split('.').map(Number)
     const date = new Date(year, month - 1, day)

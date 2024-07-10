@@ -42,13 +42,13 @@ export default function ContactList() {
 
 
     return (
-        <div>
+        <div className="client-list">
             {clients.map((client, index) => (
                 <div key={index}>
-                    <button onClick={() => showClientDetails(client)}>
+                    <button className="button-client" onClick={() => showClientDetails(client)}>
                         {client.firstName} {client.lastName}
                     </button>
-                    <button onClick={() => deleteClient(client._id)}>Delete</button>
+                    <button className="button-delete" onClick={() => deleteClient(client._id)}>Delete</button>
                 </div>
             ))}
             <div className="msg">{serverMessage}</div>
