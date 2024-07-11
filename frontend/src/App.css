@@ -17,10 +17,17 @@ body {
   min-height: 100vh;
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 main {
   flex: 1;
-  max-width: 850px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   padding: 1rem;
   padding-top: 2rem;
 }
@@ -39,6 +46,17 @@ h3 {
   border-bottom: 1px solid #ccc;
   background: #fafafa;
   margin-bottom: 1em;
+}
+
+.main-content {
+  flex: 1;
+  /* display: flex;
+  flex-direction: column;
+  align-items: flex-start; */
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  padding-top: 2rem;
 }
 
 label {
@@ -154,6 +172,7 @@ form {
   display: flex;
   flex-direction: column;
   width: 100%;
+  align-items: flex-start;
 }
 
 .client-list {
@@ -168,9 +187,10 @@ form {
 .client-group {
   display: flex;
   align-items: center;
-  flex: 1 0 calc(25% - 10px);
-  max-width: calc(25% - 10px);
+  flex: 0 0 auto;
+  width: calc(25% - 10px);
   min-width: 200px;
+  margin-bottom: 10px;
 }
 
 .button-delete {
@@ -206,6 +226,7 @@ form {
   width: 100%;
   max-width: 600px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  align-self: center;
 }
 
 .client-details h3 {
@@ -253,49 +274,19 @@ form {
   to { opacity: 0; }
 }
 
-.form-footer {
-  background-color: #f8f9fa;
-  border-top: 1px solid #e9ecef;
-  padding: 20px 0;
-  margin-top: auto; /* This ensures the footer is pushed to the bottom */
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.footer-content p {
-  margin: 0;
-  color: #6c757d;
-}
-
-.footer-nav {
-  display: flex;
-  gap: 20px;
+footer {
+  border-top: 1px solid #ccc;
+  padding: 1rem;
+  background: #fafafa;
+  text-align: center;
 }
 
 .footer-nav a {
-  color: #007bff;
+  margin: 0 10px;
   text-decoration: none;
-  transition: color 0.3s ease;
+  color: #007bff;
 }
 
 .footer-nav a:hover {
-  color: #0056b3;
-}
-
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .footer-nav {
-    margin-top: 15px;
-  }
+  text-decoration: underline;
 }

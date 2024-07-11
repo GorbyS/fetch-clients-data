@@ -10,17 +10,21 @@ import Footer from './components/Footer';
 
 export default function App() {
   return (
+    <div className="app-container">
       <BrowserRouter>
         <Header
           title={"This application is used to store and manage client data"}
           perex={"Fetching data app"}
         />
         <Menu />
-        <Routes>
-          <Route exact path="/" element={<Form />}/>
-          <Route exact path="/add-contact" element={<ContactList />}/>
-        </Routes>
+        <main className="main-content">
+          <Routes>
+            <Route exact path="/" element={<Form />}/>
+            <Route exact path="/add-contact" element={<ContactList />}/>
+          </Routes>
+        </main>
         <Footer />
       </BrowserRouter>
+    </div>
   )
 }
