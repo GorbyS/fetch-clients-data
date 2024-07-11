@@ -42,23 +42,25 @@ export default function ContactList() {
 
 
     return (
-        <div className="client-list">
-            {clients.map((client, index) => (
-                <div key={index}>
-                    <button className="button-client" onClick={() => showClientDetails(client)}>
-                        {client.firstName} {client.lastName}
-                    </button>
-                    <button className="button-delete" onClick={() => deleteClient(client._id)}>Delete</button>
-                </div>
-            ))}
+        <div className="client-list-container">
+            <div className="client-list">
+                {clients.map((client, index) => (
+                    <div key={index} className="client-group">
+                        <button className="button-client" onClick={() => showClientDetails(client)}>
+                            {client.firstName} {client.lastName}
+                        </button>
+                        <button className="button-delete" onClick={() => deleteClient(client._id)}>Delete</button>
+                    </div>
+                ))}
+            </div>
             <div className="msg">{serverMessage}</div>
             {selectedClient && (
                 <div className="client-details">
                     <h3>Client Details:</h3>
-                    <p>Name: {selectedClient.firstName}</p>
-                    <p>Last Name: {selectedClient.lastName}</p>
-                    <p>Birth Date: {selectedClient.birthDate}</p>
-                    <p>Sex: {selectedClient.sex}</p>
+                    <p><strong>Name:</strong> {selectedClient.firstName}</p>
+                    <p><strong>Last Name:</strong> {selectedClient.lastName}</p>
+                    <p><strong>Birth Date:</strong> {selectedClient.birthDate}</p>
+                    <p><strong>Sex:</strong> {selectedClient.sex}</p>
                 </div>
             )}
         </div>

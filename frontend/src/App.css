@@ -6,11 +6,19 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  height: 100%;
   font-family: 'Roboto', sans-serif;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 main {
+  flex: 1;
   max-width: 850px;
   margin: 0 auto;
   padding: 1rem;
@@ -127,43 +135,167 @@ form {
 }
 
 .button-client {
-  padding: 1rem 4rem;
+  flex-grow: 1;
+  padding: 1rem;
   background: #2c6fb6;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 5px 0 0 5px;
   cursor: pointer;
   font-weight: bold;
   text-decoration: none;
-  width: 200px;
-  margin-right: 1rem;
+  border: none;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.client-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .client-list {
-  margin-bottom: 1rem;
-  margin-right: 1rem;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.client-group {
+  display: flex;
+  align-items: center;
+  flex: 1 0 calc(25% - 10px);
+  max-width: calc(25% - 10px);
+  min-width: 200px;
 }
 
 .button-delete {
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   background-color: #dc3545;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-weight: bold;
   text-decoration: none;
 }
 
 .msg {
-  padding: 10px;
-  margin-top: 15px;
+  padding: 15px;
   background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 4px;
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
   color: #495057;
   font-size: 0.9em;
   text-align: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.client-details {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 30px;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.client-details h3 {
+  color: #2c6fb6;
+  border-bottom: 2px solid #2c6fb6;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.client-details p {
+  margin: 10px 0;
+  padding: 5px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.client-details p:last-child {
+  border-bottom: none;
+}
+
+.client-details strong {
+  font-weight: 600;
+  color: #495057;
+  margin-right: 10px;
+}
+
+.success-message {
+  background-color: #dff0d8;
+  color: #3c763d;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px;
+  animation: fadeIn 0.5s, fadeOut 0.5s 4.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.form-footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  padding: 20px 0;
+  margin-top: auto; /* This ensures the footer is pushed to the bottom */
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-content p {
+  margin: 0;
+  color: #6c757d;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-nav a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-nav {
+    margin-top: 15px;
+  }
 }

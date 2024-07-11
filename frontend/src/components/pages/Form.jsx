@@ -12,6 +12,18 @@ export default function Form() {
       hasError: false,
     })
 
+  const [isDataSent, setIsDataSent] = React.useState(false)
+
+  React.useEffect(() => {
+    let timer;
+    if (isDataSent) {
+      timer = setTimeout(() => {
+        setIsDataSent(false);
+      }, 5000);
+    }
+    return () => clearTimeout(timer);
+  }, [isDataSent])
+
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target
     setForm((prevFormData) => ({
@@ -91,15 +103,17 @@ export default function Form() {
           sex: false,
           hasError: false
         })
+        setIsDataSent(true)
       }).catch((error) => {
         console.error("Client data was not sent", error)
+        setIsDataSent(false)
       })
   }
 
   return (
     <div className="form">
       <form onSubmit={handleSubmit}>
-        <h3>Zadejte své osobní údaje</h3>
+        <h3>Enter your personal information</h3>
         <div className="input-group">
           <div className="input-wrapper">
             <Input
@@ -146,6 +160,7 @@ export default function Form() {
           </div>
           {formData.hasError && !isValidDate(formData.birthDate) && 
             <p className="error-message">Enter your birth date</p>}
+
           <div className="radio-group-wrapper">
             <div className="radio-group" style={{ 
               border: formData.hasError && formData.sex === false ? "1px solid red" : null,
@@ -175,8 +190,10 @@ export default function Form() {
           {formData.hasError && formData.sex === false && 
             <p className="error-message">Please select a gender</p>}
         </div>
-
-        <Button type="submit" isActive={isFormValid}>Potvrdit</Button>
+        <Button type="submit" isActive={isFormValid}>Submit</Button>
+        {isDataSent && (
+          <p className="success-message">Your data was successfully saved</p>
+        )}
       </form>
     </div>
   )

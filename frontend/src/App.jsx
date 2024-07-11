@@ -5,20 +5,22 @@ import Header from './components/Header';
 import ContactList from './components/pages/ContactList';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Menu from './components/Menu';
+import Footer from './components/Footer';
 
 
 export default function App() {
   return (
       <BrowserRouter>
         <Header
-          title={"Gratulujeme Občane, byl jste vybrán pro ochranu Imperia"}
-          perex={"Načtěte svoje údaje"}
+          title={"This application is used to store and manage client data"}
+          perex={"Fetching data app"}
         />
         <Menu />
         <Routes>
           <Route exact path="/" element={<Form />}/>
           <Route exact path="/add-contact" element={<ContactList />}/>
         </Routes>
+        <Footer />
       </BrowserRouter>
-  );
+  )
 }
