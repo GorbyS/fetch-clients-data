@@ -4,12 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "frontend",
-    "backend"
-  ],
+  "author": "Sergey Gorbachev <sgorbachev@thetrask.com>",
   "scripts": {
-    "start": "yarn concurrently \"yarn workspace frontend start\" \"yarn workspace backend start\""
+    "start": "npm run concurrently \"npm run --prefix frontend start\" \"npm run --prefix backend start\""
   },
   "devDependencies": {
     "concurrently": "^7.1.0",
