@@ -6,3 +6,5 @@ export default function Header({title, perex}) {
         </header>
     )
 }
+
+//Code-review
